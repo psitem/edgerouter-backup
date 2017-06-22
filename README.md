@@ -2,6 +2,10 @@
 
 These are my backup scripts for pushing EdgeRouter configurations to a remote host and remotely executing a `git commit` and `git push`. This depends on having `git` and a git repo configured on the remote host, not the EdgeRouter.
 
+### **IMPORTANT**
+
+These configuration dumps **ARE NOT SANITIZED**. Do not publish to a public git repo.
+
 ### Installation
 
 Copy contents of `config` directory to `/config` on EdgeRouter.
