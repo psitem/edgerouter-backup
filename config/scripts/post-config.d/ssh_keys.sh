@@ -1,5 +1,5 @@
 #!/bin/bash
-# Set ownership and permissions for ubnt user
+# Set ownership and permissions for root user
 source /config/user-data/edgerouter-backup.conf
 
 sudo chown root $SSH_KEYFILE
