@@ -1,9 +1,5 @@
 #!/bin/bash
-
-SSH_USER=""
-SSH_HOST=""
-SSH_KEYFILE=/config/user-data/backup_user_private.key
-REPO_PATH=\~/edgerouter-backup/
+source /config/user-data/edgerouter-backup.conf
 
 sudo touch /config/user-data/$HOSTNAME.config.conf
 sudo touch /config/user-data/$HOSTNAME.commands.conf
