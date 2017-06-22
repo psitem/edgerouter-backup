@@ -4,7 +4,7 @@ These are my backup scripts for pushing EdgeRouter configurations to a remote ho
 
 ### **IMPORTANT**
 
-These configuration dumps **ARE NOT SANITIZED**. Do not publish to a public git repo.
+These configuration dumps **ARE NOT SANITIZED**. They may contain plaintext passwords for some services. **Do not publish to a publicly accessible git repo.**
 
 ### Installation
 
