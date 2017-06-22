@@ -1,6 +1,6 @@
 # edgerouter-backup
 
-These are my backup scripts for pushing EdgeRouter configurations to a remote host and remotely executing a `git commit` and `git push`. 
+These are my backup scripts for pushing EdgeRouter configurations to a remote host and remotely executing a `git commit` and `git push`. This depends on having `git` and a git repo configured on the remote host, not the EdgeRouter.
 
 ### Installation
 
