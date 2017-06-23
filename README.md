@@ -51,3 +51,13 @@ Edit the `SSH_KEYFILE` file to have the private key for `SSH_USER`
 * Create git repo in `REPO_PATH`.
 * Configure repo as desired.
 * Verify that `git commit -m "Commit Message"` and `git push` execute without interaction.
+
+
+### Caveats
+
+If your `SSH_HOST` is unreachable, the config file won't get pushed and it will not try again. If you're making changes from the command line you will see the errors and can run `sudo /config/user-data/hooks/03commands.sh` manually to try again.
+
+You could also set up a cron job to perform the push periodically:
+
+     set system task-scheduler task commit-push executable path /config/user-data/hooks/03commands.sh
+     set system task-scheduler task commit-push interval 1h
