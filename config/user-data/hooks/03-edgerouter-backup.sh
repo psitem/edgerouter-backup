@@ -1,23 +1,23 @@
 #!/bin/bash
 source /config/user-data/edgerouter-backup.conf
 
-commit_via=${COMMIT_VIA:-other}
-commit_cmt=${COMMIT_COMMENT:-$DEFAULT_COMMIT_MESSAGE}
+COMMIT_VIA=${COMMIT_VIA:-other}
+COMMIT_CMT=${COMMIT_COMMENT:-$DEFAULT_COMMIT_MESSAGE}
 
-if [ "$commit_cmt" == "commit" ];
+if [ "$COMMIT_CMT" == "commit" ];
 then
-    commit_cmt=$DEFAULT_COMMIT_MESSAGE
+    COMMIT_CMT=$DEFAULT_COMMIT_MESSAGE
 fi
 
 if [ $# -eq 1 ] && [ $1 = "rollback" ];
 then
-    commit_via="rollback/reboot"
+    COMMIT_VIA="rollback/reboot"
 fi
 
-time=$(date +%Y-%m-%d" "%H:%M:%S)
-user=$(whoami)
+TIME=$(date +%Y-%m-%d" "%H:%M:%S)
+USER=$(whoami)
 
-git_commit_msg="$commit_cmt | by $user | via $commit_via | $time"
+git_commit_msg="$COMMIT_CMT | by $USER | via $COMMIT_VIA | $TIME"
 
 # Generate temporary config files
 sudo cli-shell-api showConfig --show-active-only --show-ignore-edit --show-show-defaults > /config/user-data/$FNAME_CONFIG
