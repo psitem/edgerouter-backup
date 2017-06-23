@@ -2,8 +2,8 @@
 source /config/user-data/edgerouter-backup.conf
 
 # Generate temporary config files
-sudo cli-shell-api showConfig --show-active-only > /config/user-data/$FNAME_CONFIG
-sudo cli-shell-api showConfig --show-commands --show-active-only > /config/user-data/$FNAME_CLI
+sudo cli-shell-api showConfig --show-active-only --show-ignore-edit > /config/user-data/$FNAME_CONFIG
+sudo cli-shell-api showConfig --show-commands --show-active-only --show-ignore-edit > /config/user-data/$FNAME_CLI
 
 # Push config files
 sudo scp -i $SSH_KEYFILE -o StrictHostKeyChecking=no /config/user-data/$FNAME_CONFIG $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CONFIG
