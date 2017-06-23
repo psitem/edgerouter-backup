@@ -9,7 +9,7 @@ I want to put my configuration files into source control, so maintaining the sam
 
 This backup script hooks into the EdgeRouter `commit` process and generates both CLI and bracket-y style configuration files. The files are then sent to a remote server via `scp`, and `git commit` and `git push` are run on the remote server -- avoiding having to install `git` on the EdgeRouter itself. This script can be used along side `config-management` or as a replacement.
 
-These scripts do not modify any EdgeOS-provided files. The locations of all the files will survive reboots and firmware upgrades. I've personally tested this on an ER-8 and ER-X-SFP running v1.9.1.1 firmware. Should work on any EdgeRouter, might work on the USG / USG Pro as well.
+These scripts do not modify any EdgeOS-provided files. The locations of all the files will survive reboots and firmware upgrades. I've personally tested this on an ER-8 and ER-X-SFP running v1.9.1.1 firmware and verified firmware survivability by upgrading to v1.9.1.1unms. Should work on any EdgeRouter, might work on the USG / USG Pro as well.
 
 
 ### **IMPORTANT**
@@ -49,8 +49,8 @@ Edit `/config/user-data/edgerouter-backup.conf` with your information:
      REPO_PATH=\~/edgerouter-backups
 
      # Names for EdgeRouter configuration backup files. If you're backing up
-	 # multiple EdgeRouters to the same place you'll want to ensure the names
-	 # are unique to each EdgeRouter
+     # multiple EdgeRouters to the same place you'll want to ensure the names
+     # are unique to each EdgeRouter
      FNAME_CONFIG=$HOSTNAME.config.conf
      FNAME_CLI=$HOSTNAME.commands.conf
 
@@ -61,9 +61,9 @@ Edit the `SSH_KEYFILE` file to have the private key for `SSH_USER`
 	 
 ### Remote Host Configuration
 
-* Make sure your SSH key works.
+* Make sure your SSH key works for `SSH_USER` (ie: place public key in `~/.ssh/authorized_users`)
 * Create git repo in `REPO_PATH`.
-* Configure repo as desired.
+* Configure git settings for repo as desired.
 * Verify that `git commit -m "Commit Message"` and `git push` execute without interaction.
 
 
@@ -83,4 +83,4 @@ You could also set up a cron job to perform the push periodically:
 
 ### Alternatives
 
-If you have lots of EdgeRouters, [RANCID](http://www.shrubbery.net/rancid/) or [Oxidized](https://github.com/ytti/oxidized) might be better suited for you. I only have a few and didn't want the overhead of maintaining a whole other system just to back up my configurations.
+If you have many EdgeRouters, a proper network configuration management system such as [RANCID](http://www.shrubbery.net/rancid/) or [Oxidized](https://github.com/ytti/oxidized) may be more appropriate.
