@@ -3,7 +3,9 @@
 Ubiquiti provides `system config-management commit-archive location` as a way to push configuration commits to a remote location. For my use, I have two problems with it:
 
 1. It backups up in their bracket-y format instead of CLI commands.
-2. They use a unique filename for each commit. I want to put my configuration files into source control, so having the same name is preferable.
+2. They use a unique filename for each commit. 
+
+I want to put my configuration files into source control, so maintaining the same filename and using the CLI format is preferable.
 
 This backup script hooks into the EdgeRouter `commit` process and generates both CLI and bracket-y style configuration files. The files are then sent to a remote server, and `git commit` and `git push` are run on the remote server -- avoiding having to install `git` on the EdgeRouter itself. This script can be used along side `config-management` or as a replacement.
 
