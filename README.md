@@ -1,6 +1,11 @@
 # edgerouter-backup
 
-These are my backup scripts for hooking into the EdgeRouter `commit` process, pushing the configuration to a remote host, and remotely executing a `git commit` and `git push`. This depends on having `git` and a git repo configured on the remote host, not the EdgeRouter. This can be using along side `system config-management commit-archive location` or as a replacement.
+Ubiquiti provides `system config-management commit-archive location` as a way to push configuration commits to a remote location. For my use, I have two problems with it:
+
+1. It backups up in their bracket-y format instead of CLI commands.
+2. They use a unique filename for each commit. I want to put my configuration files into source control, so having the same name is preferable.
+
+This backup script hooks into the EdgeRouter `commit` process and generates both CLI and bracket-y style configuration files. The files are then sent to a remote server, and `git commit` and `git push` are run on the remote server -- avoiding having to install `git` on the EdgeRouter itself. This script can be used along side `config-management` or as a replacement.
 
 These scripts do not modify any Ubiquiti-provided files. The locations of all the files will surivive reboots and should surivive a firmware upgrade (untested). I've personally tested this on an ER-8 and ER-X-SFP running v1.9.1 firmware. Should work on any EdgeRouter, might work on the USG / USG Pro as well.
 
