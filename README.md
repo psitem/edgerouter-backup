@@ -2,7 +2,7 @@
 
 Ubiquiti provides `system config-management commit-archive location` as a way to push configuration commits to a remote location. For my use, I have two problems with it:
 
-1. It backups up in their bracket-y format instead of CLI commands.
+1. Backups are in their bracket-y format instead of CLI commands.
 2. They use a unique filename for each commit. 
 
 I want to put my configuration files into source control, so maintaining the same filename and using the CLI format is preferable.
