@@ -18,5 +18,5 @@ git push
 ENDSSH
 
 # Remove temporary config files
-#sudo rm /config/user-data/$FNAME_CONFIG
-#sudo rm /config/user-data/$FNAME_CLI
+sudo rm /config/user-data/$FNAME_CONFIG
+sudo rm /config/user-data/$FNAME_CLI
