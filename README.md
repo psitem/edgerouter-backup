@@ -27,6 +27,9 @@ Copy contents of `config` directory to `/config` on EdgeRouter.
 Edit `/config/user-data/edgerouter-backup.conf` with your information:
 
      #!/bin/bash
+     
+     # Default commit message
+     DEFAULT_COMMIT_MESSAGE="Auto commit by edgerouter-backup"
 
      # Path to private key for SSH / SCP
      SSH_KEYFILE=/config/user-data/backup_user_private.key
