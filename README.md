@@ -9,7 +9,7 @@ I want to put my configuration files into source control, so maintaining the sam
 
 This backup script hooks into the EdgeRouter `commit` process and generates both CLI and bracket-y style configuration files. The files are then sent to a remote server via `scp`, and `git commit` and `git push` are run on the remote server -- avoiding having to install `git` on the EdgeRouter itself. This script can be used along side `config-management` or as a replacement.
 
-These scripts do not modify any EdgeOS-provided files. The locations of all the files will survive reboots and should survive a firmware upgrade (untested). I've personally tested this on an ER-8 and ER-X-SFP running v1.9.1 firmware. Should work on any EdgeRouter, might work on the USG / USG Pro as well.
+These scripts do not modify any EdgeOS-provided files. The locations of all the files will survive reboots and firmware upgrades. I've personally tested this on an ER-8 and ER-X-SFP running v1.9.1.1 firmware. Should work on any EdgeRouter, might work on the USG / USG Pro as well.
 
 
 ### **IMPORTANT**
