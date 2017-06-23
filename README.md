@@ -34,7 +34,7 @@ Edit `/config/user-data/edgerouter-backup.conf` with your information:
      SSH_HOST=host
      
      # Path to git repo on SSH_HOST
-     REPO_PATH=\~/edgerouter-backup
+     REPO_PATH=\~/edgerouter-backups
 
      # Names for EdgeRouter configuration backup files.
      FNAME_CONFIG=$HOSTNAME.config.conf
