@@ -19,10 +19,10 @@ These configuration dumps **ARE NOT SANITIZED**. They may contain plaintext pass
 ---
 
 * [Installation](#installation)
-* EdgeRouter Configuration
-* Remote Host Configuration
-* Caveats
-* Alternatives
+* [EdgeRouter Configuration](#edgerouter-configuration)
+* [Remote Host Configuration](#remote-host-configuration)
+* [Caveats](#caveats)
+* [Alternatives](#alternatives)
 
 ---
 
