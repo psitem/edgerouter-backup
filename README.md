@@ -16,13 +16,22 @@ These scripts do not modify any EdgeOS-provided files. The locations of all the 
 
 These configuration dumps **ARE NOT SANITIZED**. They may contain plaintext passwords for some services. **Do not publish to a publicly accessible git repo.**
 
+---
+
+* [Installation](#installation)
+* EdgeRouter Configuration
+* Remote Host Configuration
+* Caveats
+* Alternatives
+
+---
 
 ### Installation
 
 Copy contents of `config` directory to `/config` on EdgeRouter.
 
 
-### Configuration
+### EdgeRouter Configuration
 
 Edit `/config/user-data/edgerouter-backup.conf` with your information:
 
@@ -50,7 +59,7 @@ Edit the `SSH_KEYFILE` file to have the private key for `SSH_USER`
 `sudo chmod +x /config/scripts/post-config.d/*.sh && sudo /config/scripts/post-config.d/hooks.sh && sudo /config/scripts/post-config.d/ssh_keys.sh`
 
 	 
-### Remote Host Setup
+### Remote Host Configuration
 
 * Make sure your SSH key works.
 * Create git repo in `REPO_PATH`.
