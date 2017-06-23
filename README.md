@@ -59,14 +59,14 @@ Edit the `SSH_KEYFILE` file to have the private key for `SSH_USER`
 
 There's no error-handling in these scripts at all. 
 
-If your `SSH_HOST` is unreachable, the config file won't get pushed and it will not try again. If you're making changes from the command line you will see the errors and can run `sudo /config/user-data/hooks/03commands.sh` manually to try again.
+If your `SSH_HOST` is unreachable, the config file won't get pushed and it will not try again. If you're making changes from the command line you will see the errors and can run `sudo /config/user-data/hooks/03-edgerouter-backup.sh` manually to try again.
 
 You could also set up a cron job to perform the push periodically:
 
-     set system task-scheduler task commit-push executable path /config/user-data/hooks/03commands.sh
+     set system task-scheduler task commit-push executable path /config/user-data/hooks/03-edgerouter-backup.sh
      set system task-scheduler task commit-push interval 1h
 
-`git` is smart enough not to `commit` or `push` when no actual changes have been made, however, this script is not -- the backups will be generated and transferred every time `03commands.sh` runs.
+`git` is smart enough not to `commit` or `push` when no actual changes have been made, however, this script is not -- the backups will be generated and transferred every time `03-edgerouter-backup.sh` runs.
 
 
 ### Alternatives
