@@ -21,8 +21,6 @@ These configuration dumps **ARE NOT SANITIZED**. They may contain plaintext pass
 
 Copy contents of `config` directory to `/config` on EdgeRouter.
 
-`sudo chmod +x /config/scripts/post-config.d/hooks.sh && sudo /config/scripts/post-config.d/hooks.sh`
-
 
 ### Configuration
 
@@ -42,7 +40,11 @@ Edit `/config/user-data/edgerouter-backup.conf` with your information:
      FNAME_CONFIG=$HOSTNAME.config.conf
      FNAME_CLI=$HOSTNAME.commands.conf
 
+Edit the `SSH_KEYFILE` file to have the private key for `SSH_USER`
 
+`sudo chmod +x /config/scripts/post-config.d/*.sh && sudo /config/scripts/post-config.d/hooks.sh && sudo /config/scripts/post-config.d/ssh_keys.sh`
+
+	 
 ### Remote Host Setup
 
 * Make sure your SSH key works.
