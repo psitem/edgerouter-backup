@@ -30,7 +30,8 @@ sudo scp -i $SSH_KEYFILE -o StrictHostKeyChecking=no /config/user-data/$FNAME_CL
 # git commit and git push on remote host
 sudo ssh -i $SSH_KEYFILE -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'bash -s' << ENDSSH
 cd $REPO_PATH
-git add --all
+git add $REPO_PATH/$FNAME_CONFIG
+git add $REPO_PATH/$FNAME_CLI
 git commit -m "$git_commit_msg"
 git push
 ENDSSH
