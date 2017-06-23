@@ -67,3 +67,8 @@ You could also set up a cron job to perform the push periodically:
      set system task-scheduler task commit-push interval 1h
 
 `git` is smart enough not to `commit` or `push` when no actual changes have been made, however, this script is not -- the backups will be generated and transferred every time `03commands.sh` runs.
+
+
+### Alternatives
+
+If you have lots of EdgeRouters, [RANCID](http://www.shrubbery.net/rancid/) or [Oxidized](https://github.com/ytti/oxidized) might be better suited for you. I only have a few and didn't want the overhead of maintaining a whole other system just to back up my configurations.
