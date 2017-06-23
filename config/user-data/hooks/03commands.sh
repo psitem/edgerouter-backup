@@ -6,8 +6,8 @@ sudo cli-shell-api showConfig --show-active-only > /config/user-data/$FNAME_CONF
 sudo cli-shell-api showConfig --show-commands --show-active-only > /config/user-data/$FNAME_CLI
 
 # Push config files
-sudo scp -i $SSH_KEYFILE -o StrictHostKeyChecking=no /config/user-data/$FNAME_CONFIG $SSH_USER@$SSH_HOST:$REPO_PATH/
-sudo scp -i $SSH_KEYFILE -o StrictHostKeyChecking=no /config/user-data/$FNAME_CLI $SSH_USER@$SSH_HOST:$REPO_PATH/
+sudo scp -i $SSH_KEYFILE -o StrictHostKeyChecking=no /config/user-data/$FNAME_CONFIG $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CONFIG
+sudo scp -i $SSH_KEYFILE -o StrictHostKeyChecking=no /config/user-data/$FNAME_CLI $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CLI
 
 # git commit and git push on remote host
 sudo ssh -i $SSH_KEYFILE -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'bash -s' << ENDSSH
@@ -18,5 +18,5 @@ git push
 ENDSSH
 
 # Remove temporary config files
-sudo rm /config/user-data/$FNAME_CONFIG
-sudo rm /config/user-data/$FNAME_CLI
+#sudo rm /config/user-data/$FNAME_CONFIG
+#sudo rm /config/user-data/$FNAME_CLI
