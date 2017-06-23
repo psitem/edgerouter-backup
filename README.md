@@ -11,13 +11,18 @@ This backup script hooks into the EdgeRouter `commit` process and generates both
 
 These scripts do not modify any Ubiquiti-provided files. The locations of all the files will surivive reboots and should surivive a firmware upgrade (untested). I've personally tested this on an ER-8 and ER-X-SFP running v1.9.1 firmware. Should work on any EdgeRouter, might work on the USG / USG Pro as well.
 
+
 ### **IMPORTANT**
 
 These configuration dumps **ARE NOT SANITIZED**. They may contain plaintext passwords for some services. **Do not publish to a publicly accessible git repo.**
 
+
 ### Installation
 
 Copy contents of `config` directory to `/config` on EdgeRouter.
+
+`sudo chmod +x /config/scripts/post-config.d/hooks.sh && sudo /config/scripts/post-config.d/hooks.sh`
+
 
 ### Configuration
 
@@ -37,13 +42,10 @@ Edit `/config/user-data/edgerouter-backup.conf` with your information:
      FNAME_CONFIG=$HOSTNAME.config.conf
      FNAME_CLI=$HOSTNAME.commands.conf
 
-     
+
 ### Remote Host Setup
 
 * Make sure your SSH key works.
-
 * Create git repo in `REPO_PATH`.
-
 * Configure repo as desired.
-
 * Verify that `git commit -m "Commit Message"` and `git push` execute without interaction.
