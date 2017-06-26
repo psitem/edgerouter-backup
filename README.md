@@ -48,11 +48,14 @@ Edit `/config/user-data/edgerouter-backup.conf` with your information:
      # Path to git repo on SSH_HOST
      REPO_PATH=\~/edgerouter-backups
 
-     # Names for EdgeRouter configuration backup files. If you're backing up
-     # multiple EdgeRouters to the same place you'll want to ensure the names
-     # are unique to each EdgeRouter
-     FNAME_CONFIG=$HOSTNAME.config.conf
-     FNAME_CLI=$HOSTNAME.commands.conf
+     # Names for EdgeRouter configuration backup files. If you are backing
+     # up multiple EdgeRouters to the same place you'll want to ensure that
+     # FNAME_BASE is unique to each EdgeRouter
+     FNAME_BASE=$HOSTNAME
+     
+     FNAME_CONFIG=$FNAME_BASE.config.conf
+     FNAME_CLI=$FNAME_BASE.commands.conf
+     FNAME_BACKUP=$FNAME_BASE.backup.tar.gz
 
 Edit the `SSH_KEYFILE` file to have the private key for `SSH_USER`
 
