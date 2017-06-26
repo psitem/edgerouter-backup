@@ -29,18 +29,26 @@ sudo cli-shell-api showConfig --show-active-only --show-ignore-edit --show-show-
 sudo cli-shell-api showConfig --show-commands --show-active-only --show-ignore-edit --show-show-defaults > /tmp/edgerouter-backup-$FNAME_CLI
 
 # Push config files
-sudo scp -i $SSH_KEYFILE -o StrictHostKeyChecking=no /tmp/edgerouter-backup-$FNAME_CONFIG $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CONFIG
-sudo scp -i $SSH_KEYFILE -o StrictHostKeyChecking=no /tmp/edgerouter-backup-$FNAME_CLI $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CLI
+echo "edgerouter-backup: Copying backup files to $SSH_USER@$SSH_HOST:$REPO_PATH"
+sudo scp -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/edgerouter-backup-$FNAME_CONFIG $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CONFIG &> /dev/null
+sudo scp -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/edgerouter-backup-$FNAME_CLI $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CLI &> /dev/null
+sudo tar cf - -C / config | ssh -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "gzip -cnq > $REPO_PATH/$FNAME_BACKUP" &> /dev/null
+
 
 # git commit and git push on remote host
-sudo ssh -i $SSH_KEYFILE -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'bash -s' << ENDSSH
+echo "edgerouter-backup: Triggering 'git commit'"
+sudo ssh -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'bash -s' << ENDSSH &> /dev/null
 cd $REPO_PATH
 git add $REPO_PATH/$FNAME_CONFIG
 git add $REPO_PATH/$FNAME_CLI
+git add $REPO_PATH/$FNAME_BACKUP
 git commit -m "$GIT_COMMIT_MSG"
 git push
 ENDSSH
 
 # Remove temporary files
+echo "edgerouter-backup: Removingtemporary files"
 sudo rm /tmp/edgerouter-backup-$FNAME_CONFIG
 sudo rm /tmp/edgerouter-backup-$FNAME_CLI
+
+echo "edgerouter-backup: Complete"
