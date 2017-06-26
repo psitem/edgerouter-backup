@@ -2,12 +2,12 @@
 
 EdgeOS provides `system config-management commit-archive location` as a way to push configuration commits to a remote location. For my use, I have two problems with it:
 
-1. Backups are in their bracket-y format instead of CLI commands.
+1. Backups are in their brace-y format instead of CLI commands.
 2. They use a unique filename for each commit. 
 
-I want to put my configuration files into source control, so maintaining the same filename and using the CLI format is preferable.
+I want to put my configuration files into source control, so maintaining the same filename is preferable. I also fine the CLI format to be easier to read and `diff` against.
 
-This backup script hooks into the EdgeRouter `commit` process and generates both CLI and bracket-y style configuration files. The files are then sent to a remote server via `scp`, and `git commit` and `git push` are run on the remote server -- avoiding having to install `git` on the EdgeRouter itself. This script can be used along side `config-management` or as a replacement.
+This backup script hooks into the EdgeRouter `commit` process and generates configuration files in both CLI and brace-y formats, along with a full configuration backup in `.tar.gz` form that is directly restore-able via the management GUI. The files are then sent to a remote server via `scp`, and `git commit` & `git push` are run on the remote server -- avoiding having to install `git` on the EdgeRouter itself. This script can be used along side `config-management` or as a replacement.
 
 These scripts do not modify any EdgeOS-provided files. The locations of all the files will survive reboots and firmware upgrades. I've personally tested this on an ER-8 and ER-X-SFP running v1.9.1.1 firmware and verified firmware survivability by upgrading to v1.9.1.1unms. Should work on any EdgeRouter model. Might work on the USG / USG Pro but that's rather pointless -- back up your UniFi Controller.
 
