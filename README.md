@@ -1,6 +1,6 @@
 # edgerouter-backup
 
-EdgeOS provides `system config-management commit-archive location` as a way to push configuration commits to a remote location. For my use, I have two problems with it:
+Ubiquiti's EdgeOS provides `system config-management commit-archive location` as a way to push configuration commits to a remote location. For my use, I have two problems with it:
 
 1. Backups are in their brace-y format instead of CLI commands.
 2. They use a unique filename for each commit. 
