@@ -5,7 +5,7 @@ Ubiquiti's EdgeOS provides `system config-management commit-archive location` as
 1. Backups are in their brace-y format instead of CLI commands.
 2. They use a unique filename for each commit. 
 
-I want to put my configuration files into source control, so maintaining the same filename is preferable. I also fine the CLI format to be easier to read and `diff` against.
+I want to put my configuration files into source control, so maintaining the same filename is preferable. I also find the CLI format to be easier to read and `diff` against.
 
 This backup script hooks into the EdgeRouter `commit` process and generates configuration files in both CLI and brace-y formats, along with a full configuration backup in `.tar.gz` form that is directly restore-able via the management GUI. The files are then sent to a remote server via `scp`, and `git commit` & `git push` are run on the remote server -- avoiding having to install `git` on the EdgeRouter itself. This script can be used along side `config-management` or as a replacement.
 
