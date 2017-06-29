@@ -24,6 +24,13 @@ USER=$(whoami)
 
 GIT_COMMIT_MSG="$COMMIT_CMT | by $USER | via $COMMIT_VIA | $TIME"
 
+# Remove temporary files
+#echo "edgerouter-backup: Removing temporary files"
+sudo rm /tmp/edgerouter-backup-$FNAME_CONFIG
+sudo rm /tmp/edgerouter-backup-$FNAME_CLI
+sudo rm /tmp/edgerouter-backup-$FNAME_BACKUP
+
+
 # Generate temporary config files
 sudo cli-shell-api showConfig --show-active-only --show-ignore-edit --show-show-defaults > /tmp/edgerouter-backup-$FNAME_CONFIG
 sudo cli-shell-api showConfig --show-commands --show-active-only --show-ignore-edit --show-show-defaults > /tmp/edgerouter-backup-$FNAME_CLI
@@ -45,11 +52,5 @@ git add $REPO_PATH/$FNAME_BACKUP
 git commit -m "$GIT_COMMIT_MSG"
 git push
 ENDSSH
-
-# Remove temporary files
-echo "edgerouter-backup: Removing temporary files"
-sudo rm /tmp/edgerouter-backup-$FNAME_CONFIG
-sudo rm /tmp/edgerouter-backup-$FNAME_CLI
-sudo rm /tmp/edgerouter-backup-$FNAME_BACKUP
 
 echo "edgerouter-backup: Complete"
