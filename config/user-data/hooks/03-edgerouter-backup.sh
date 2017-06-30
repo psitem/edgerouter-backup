@@ -26,9 +26,9 @@ GIT_COMMIT_MSG="$COMMIT_CMT | by $USER | via $COMMIT_VIA | $TIME"
 
 # Remove temporary files
 #echo "edgerouter-backup: Removing temporary files"
-sudo rm /tmp/edgerouter-backup-$FNAME_CONFIG
-sudo rm /tmp/edgerouter-backup-$FNAME_CLI
-sudo rm /tmp/edgerouter-backup-$FNAME_BACKUP
+sudo rm /tmp/edgerouter-backup-$FNAME_CONFIG &> /dev/null
+sudo rm /tmp/edgerouter-backup-$FNAME_CLI &> /dev/null
+sudo rm /tmp/edgerouter-backup-$FNAME_BACKUP &> /dev/null
 
 
 # Generate temporary config files
