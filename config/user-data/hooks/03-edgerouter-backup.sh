@@ -38,13 +38,13 @@ sudo find /config/* | grep -v "/config/dhcpd.leases" | xargs tar cf /tmp/edgerou
 
 # Push config files
 echo "edgerouter-backup: Copying backup files to $SSH_USER@$SSH_HOST:$REPO_PATH"
-sudo scp -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/edgerouter-backup-$FNAME_CONFIG $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CONFIG > /dev/null
-sudo scp -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/edgerouter-backup-$FNAME_CLI $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CLI > /dev/null
-sudo cat /tmp/edgerouter-backup-$FNAME_BACKUP.tar | sudo ssh -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "gzip -cnq9 > $REPO_PATH/$FNAME_BACKUP.tar.gz" > /dev/null
+sudo scp -P $SSH_PORT -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/edgerouter-backup-$FNAME_CONFIG $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CONFIG > /dev/null
+sudo scp -P $SSH_PORT -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no /tmp/edgerouter-backup-$FNAME_CLI $SSH_USER@$SSH_HOST:$REPO_PATH/$FNAME_CLI > /dev/null
+sudo cat /tmp/edgerouter-backup-$FNAME_BACKUP.tar | sudo ssh -p $SSH_PORT -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST "gzip -cnq9 > $REPO_PATH/$FNAME_BACKUP.tar.gz" > /dev/null
 
 # git commit and git push on remote host
 echo "edgerouter-backup: Triggering 'git commit'"
-sudo ssh -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'bash -s' << ENDSSH > /dev/null
+sudo ssh -p $SSH_PORT -q -i $SSH_KEYFILE -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST 'bash -s' << ENDSSH > /dev/null
 cd $REPO_PATH
 git add $REPO_PATH/$FNAME_CONFIG
 git add $REPO_PATH/$FNAME_CLI

@@ -44,6 +44,7 @@ Edit `/config/user-data/edgerouter-backup.conf` with your information:
      SSH_KEYFILE=/config/user-data/backup_user_private.key
      SSH_USER=username
      SSH_HOST=host
+     SSH_PORT=port
      
      # Path to git repo on SSH_HOST
      REPO_PATH=\~/edgerouter-backups
